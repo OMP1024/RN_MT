@@ -9,24 +9,43 @@ import {ItemSeparator,SectionSeparator} from '../../components/Common';
 import OrderDetailCell from './OrderDetailCell';
 import OrderMenuItem from './OrderMenuItem';
 import OrderRecommendCell from './OrderRecommendCell';
+import api from '../../utils/api';
+import color from '../../common/color'
+import screen from '../../common/screen'
 
 class OrderPage extends PureComponent{
 
     // {} 可能是个代码块，可能是对象
-    static navigationOptions = ({navigator}) => ({
+    static navigationOptions = ({navigation}) => ({
         title:'订单',
-        headerStyle:{ backgroundColor:'#fff' }
+        headerStyle:{
+            backgroundColor: '#fff',
+            borderColor:color.border,
+            borderBottomWidth:screen.onePixel
+        }
     })
 
+    state:{
+        dataList:Array,
+        refreshing:boolean
+    }
+
     // 构造
-      constructor(props) {
+    constructor(props) {
         super(props);
         // 初始状态
         this.state = {
             dataList:[],
             refreshing:false
         };
-      }
+        // 跟 state props 相关的函数都要绑定一下
+        this.requestData = this.requestData.bind(this);
+        this._renderCell = this._renderCell.bind(this);
+    }
+
+    componentDidMount() {
+        this.requestData()
+    }
 
     render(){
         return(
@@ -37,6 +56,7 @@ class OrderPage extends PureComponent{
                     onRefresh={this.requestData}
                     refreshing={this.state.refreshing}
                     renderItem={this._renderCell}
+                    ItemSeparatorComponent={() => <ItemSeparator/>}
                     keyExtractor={this._keyExtractor}
                 />
             </View>
@@ -47,7 +67,7 @@ class OrderPage extends PureComponent{
         return(
             <OrderRecommendCell
                 info={info.item}
-                onPress={() => {return}}
+                onPress={() => {this.props.navigation.navigate('Detail',{info: info.item})}}
             />
         )
     }
@@ -56,7 +76,6 @@ class OrderPage extends PureComponent{
         return(
             <View>
                 <OrderDetailCell title='我的订单' detail="全部订单"/>
-                <ItemSeparator/>
                 <View style={styles.menu}>
                     <OrderMenuItem icon={require('../../images/Order/order_tab_need_pay.png')} title="代付款" />
                     <OrderMenuItem icon={require('../../images/Order/order_tab_need_use.png')} title="待使用" />
@@ -65,7 +84,6 @@ class OrderPage extends PureComponent{
                 </View>
                 <SectionSeparator/>
                 <OrderDetailCell title="我的收藏" detail="查看全部"/>
-                <ItemSeparator/>
             </View>
         )
     }
@@ -92,10 +110,10 @@ class OrderPage extends PureComponent{
                 }
             )
 
-            this.setState({
-                dataList: dataList,
-                refreshing: false,
-            })
+            this.setState((preState) => ({
+                dataList:preState.dataList.concat(dataList),
+                refreshing:false,
+            }))
         } catch (error) {
             this.setState({ refreshing: false })
         }

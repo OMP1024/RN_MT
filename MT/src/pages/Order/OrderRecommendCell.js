@@ -8,16 +8,18 @@ import {Heading1,Paragraph} from '../../components/Common';
 import color from '../../common/color';
 
 export default class OrderRecommendCell extends PureComponent{
+
+
     render(){
         const {info} = this.props
         let imgUrl = info.imageUrl.replace('w.h','160.0')
         return(
-            <TouchableOpacity style={styles.container}>
+            <TouchableOpacity style={styles.container} onPress={this.props.onPress} activeOpacity={0.4}>
                 <Image source={{uri:imgUrl}} style={styles.icon}/>
-                <View style={{marginLeft:18,justifyContent:'space-between'}}>
+                <View style={styles.content}>
                     <Heading1>{info.title}</Heading1>
-                    <Paragraph style={{color:'gray'}}>{info.subtitle}</Paragraph>
-                    <View style={{justifyContent:'flex-end'}}>
+                    <Paragraph style={{color:'gray',marginTop:5}} numberOfLines={0}>{info.subtitle}</Paragraph>
+                    <View style={{flex:1,justifyContent:'flex-end'}}>
                         <Heading1 style={styles.price}>{info.price}元</Heading1>
                     </View>
                 </View>
@@ -29,7 +31,6 @@ export default class OrderRecommendCell extends PureComponent{
 const styles = StyleSheet.create({
     container:{
         flexDirection:'row',
-        alignItems:'center',
         padding:10,
     },
     icon:{
@@ -40,7 +41,8 @@ const styles = StyleSheet.create({
     content:{
         flex:1,
         marginLeft:12,
-        marginRight:10,
+        marginRight:12,
+        justifyContent:'space-between'
     },
     price:{
         color:color.theme

@@ -16,7 +16,7 @@ export default class MinePage extends PureComponent{
     // 每个scene类都有一个 navigationOptions 属性，用来重新设置这个页面的 navigation 导航栏，也是组合形式的，不是覆盖
     static navigationOptions = ({ navigation }) => ({
         headerRight: (
-            <View style={{ flexDirection: 'row',backgroundColor:'red'}}>
+            <View style={{ flexDirection: 'row'}}>
                 <NavigationItem
                     iconSource={require('../../images/Mine/icon_navigationItem_set_white.png')}
                     onPress={() => {}}
@@ -27,12 +27,14 @@ export default class MinePage extends PureComponent{
                 />
             </View>
         ),
-        headerStyle: { backgroundColor: color.theme },
+        
+        headerStyle: { backgroundColor: color.theme},
     })
 
     render(){
         return(
             <View style={styles.container}>
+                <View style={{position:'absolute',width:screen.screenW,height:screen.screenH*0.5,backgroundColor:color.theme}}/>
                 <SectionList
                     sections={this._getListData()}
                     renderItem={this._renderItem}

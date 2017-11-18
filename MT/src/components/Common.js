@@ -13,7 +13,7 @@ export function ItemSeparator() {
 }
 
 export function SectionSeparator() {
-    return <View style={{width:screen.screenW,height:20,backgroundColor:'#e6e6e6'}}/>
+    return <View style={{width:screen.screenW,height:12,backgroundColor:'#f2f2f2'}}/>
 }
 
 export function Heading1({style,...props}:Object) {

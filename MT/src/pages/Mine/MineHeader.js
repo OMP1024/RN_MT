@@ -13,8 +13,8 @@ export default class MineHeader extends PureComponent{
             <View style={styles.container} >
                 <View style={styles.content}>
                     <Image style={styles.avatar} source={require('../../images/Mine/avatar.png')}/>
-                    <View style={{alignItems:'center',justifyContent:'center'}}>
-                        <View style={{flex:1,flexDirection:'row',alignItems:'center',paddingLeft:5}}>
+                    <View style={{flex: 1,alignItems:'flex-start',justifyContent:'center'}}>
+                        <View style={{flexDirection:'row',alignItems:'center',paddingLeft:5}}>
                             <Text style={{fontSize:12,color:'#fff'}}>{userName}</Text>
                             <Image style={{width:12,height:12}} source={require('../../images/Mine/beauty_technician_v15.png')}/>
                         </View>
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
         backgroundColor:color.theme,
     },
     content:{
+        flex:1,
         flexDirection:'row',
         alignItems:'center',
     },
