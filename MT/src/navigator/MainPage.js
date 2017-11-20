@@ -3,7 +3,7 @@
  */
 
 import React,{ PureComponent } from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet,StatusBar} from 'react-native';
 import {TabNavigator,TabBarBottom,StackNavigator} from 'react-navigation';
 import HomePage from '../pages/Home/HomePage';
 import NearPage from '../pages/Near/NearPage';
@@ -13,6 +13,20 @@ import DetailPage from '../pages/Detail/DetailPage';
 import WebPage from '../components/WebPage';
 import color from '../common/color';
 import TabBarItem from '../components/TabBarItem';
+
+const lightContentScenes = ['Home', 'Mine']
+
+function getCurrentRouteName(navigationState) {
+    if (!navigationState) {
+        return null;
+    }
+    const route = navigationState.routes[navigationState.index];
+    // dive into nested navigators
+    if (route.routes) {
+        return getCurrentRouteName(route);
+    }
+    return route.routeName;
+}
 
 // TabNavigator 的路由配置项
 const tabRouteConfigs = {
@@ -116,7 +130,21 @@ export const MainNavigator = StackNavigator(stackRouteConfigs,stackNavigatorConf
 export default class MainPage extends PureComponent{
     render(){
         return(
-            <MainNavigator/>
+            <MainNavigator
+                onNavigationStateChange={
+                    (prevState, currentState) => {
+                        const currentScene = getCurrentRouteName(currentState);
+                        const previousScene = getCurrentRouteName(prevState);
+                        if (previousScene !== currentScene) {
+                            if (lightContentScenes.indexOf(currentScene) >= 0) {
+                                StatusBar.setBarStyle('light-content')
+                            } else {
+                                StatusBar.setBarStyle('dark-content')
+                            }
+                        }
+                    }
+                }
+            />
         );
     }
 }

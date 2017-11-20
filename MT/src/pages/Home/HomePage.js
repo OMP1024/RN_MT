@@ -46,6 +46,7 @@ class HomePage extends Component{
 
     constructor(props: Object) {
         super(props)
+        StatusBar.setBarStyle('light-content');
 
         this.state = {
             discounts: [],
@@ -105,7 +106,6 @@ class HomePage extends Component{
                 (info) => {
                     return{
                         id:info.id,
-                        type:info.type,
                         title:info.maintitle,
                         subtitle:info.deputytitle,
                         color:info.deputy_typeface_color,

@@ -3,7 +3,7 @@
  */
 
 import React,{PureComponent} from 'react';
-import {View, StyleSheet, Text,FlatList} from 'react-native';
+import {View, StyleSheet, Text,FlatList,StatusBar} from 'react-native';
 import NavigationItem from '../../components/NavigationItem'
 import DetailListHeader from './DetailListHeader'
 import OrderRecommendCell from '../../pages/Order/OrderRecommendCell'
@@ -33,6 +33,7 @@ class DetailPage extends PureComponent{
     }
 
     componentDidMount() {
+        StatusBar.setBarStyle('dark-content');
         this.requestRecommend()
     }
 

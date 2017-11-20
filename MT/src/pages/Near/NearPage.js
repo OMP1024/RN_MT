@@ -3,7 +3,7 @@
  */
 
 import React,{Component} from 'react';
-import {View, StyleSheet, Text,TouchableOpacity, Image} from 'react-native';
+import {View, StyleSheet, Text,TouchableOpacity, Image,StatusBar} from 'react-native';
 import ScrollableTabView,{ScrollableTabBar} from 'react-native-scrollable-tab-view'
 import NearListView from './NearListView'
 import screen from '../../common/screen'
@@ -27,6 +27,10 @@ class NearPage extends Component{
         ),
         headerStyle: { backgroundColor: 'white' },
     })
+
+    componentDidMount() {
+        StatusBar.setBarStyle('dark-content');
+    }
 
     render(){
         let titles = ['享美食', '住酒店', '爱玩乐', '全部'];

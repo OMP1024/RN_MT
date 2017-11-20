@@ -3,7 +3,7 @@
  */
 
 import React,{PureComponent} from 'react';
-import {View, StyleSheet, Text,FlatList} from 'react-native';
+import {View, StyleSheet, Text,FlatList,StatusBar} from 'react-native';
 import DetailCell from './OrderDetailCell';
 import {ItemSeparator,SectionSeparator} from '../../components/Common';
 import OrderDetailCell from './OrderDetailCell';
@@ -44,6 +44,7 @@ class OrderPage extends PureComponent{
     }
 
     componentDidMount() {
+        StatusBar.setBarStyle('dark-content');
         this.requestData()
     }
 
