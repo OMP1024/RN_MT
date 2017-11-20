@@ -16,7 +16,7 @@ export default class Button extends PureComponent{
 
     static propTypes = {
         onPress: PropsType.func,
-        style: PropsType.style,
+        style: Text.propTypes.style,
         disabled: PropsType.bool,
         activeOpacity: PropsType.number,
         title: PropsType.string

@@ -28,9 +28,9 @@ export default class DetailListHeader extends PureComponent{
         let {
             imageUrl,
             price,
-        } = this.props.info
+        } = this.props.info;
 
-        imageUrl = imageUrl.replace('w.h','320.0')
+        imageUrl = imageUrl.replace('w.h','320.0');
 
         return (
             <View>

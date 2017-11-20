@@ -16,20 +16,6 @@ import TabBarItem from '../components/TabBarItem';
 
 // TabNavigator 的路由配置项
 const tabRouteConfigs = {
-    Order: {
-        screen: OrderPage,
-        navigationOptions:({navigation}) =>({
-            tabBarLabel:"订单",
-            tabBarIcon:({focused, tintColor}) => (
-                <TabBarItem
-                    focused={focused}
-                    tintColor={tintColor}
-                    selectedImage={require('../images/tabbar/pfb_tabbar_order_selected.png')}
-                    normalImage={require('../images/tabbar/pfb_tabbar_order.png')}
-                />
-            )
-        })
-    },
     Home: {
         screen: HomePage,
         navigationOptions:({navigation}) =>({
@@ -54,6 +40,20 @@ const tabRouteConfigs = {
                     tintColor={tintColor}
                     selectedImage={require('../images/tabbar/pfb_tabbar_merchant_selected.png')}
                     normalImage={require('../images/tabbar/pfb_tabbar_merchant.png')}
+                />
+            )
+        })
+    },
+    Order: {
+        screen: OrderPage,
+        navigationOptions:({navigation}) =>({
+            tabBarLabel:"订单",
+            tabBarIcon:({focused, tintColor}) => (
+                <TabBarItem
+                    focused={focused}
+                    tintColor={tintColor}
+                    selectedImage={require('../images/tabbar/pfb_tabbar_order_selected.png')}
+                    normalImage={require('../images/tabbar/pfb_tabbar_order.png')}
                 />
             )
         })
@@ -97,7 +97,7 @@ const stackRouteConfigs = {
 
     Detail : { screen: DetailPage },
 
-    web: { screen: WebPage },
+    Web: { screen: WebPage },
 };
 
 // StackNavigator的配置项

@@ -11,6 +11,7 @@ import MineHeader from './MineHeader';
 import NavigationItem from '../../components/NavigationItem';
 import {ItemSeparator,SectionSeparator} from '../../components/Common'
 
+
 export default class MinePage extends PureComponent{
 
     // 每个scene类都有一个 navigationOptions 属性，用来重新设置这个页面的 navigation 导航栏，也是组合形式的，不是覆盖
@@ -34,7 +35,7 @@ export default class MinePage extends PureComponent{
     render(){
         return(
             <View style={styles.container}>
-                <View style={{position:'absolute',width:screen.screenW,height:screen.screenH*0.5,backgroundColor:color.theme}}/>
+                <View style={{position:'absolute',width:screen.screenW,height:screen.screenH*0.5,backgroundColor:'red'}}/>
                 <SectionList
                     sections={this._getListData()}
                     renderItem={this._renderItem}

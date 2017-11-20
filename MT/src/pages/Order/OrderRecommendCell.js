@@ -12,7 +12,7 @@ export default class OrderRecommendCell extends PureComponent{
 
     render(){
         const {info} = this.props
-        let imgUrl = info.imageUrl.replace('w.h','160.0')
+        let imgUrl = info.imageUrl.replace('w.h','160.0');
         return(
             <TouchableOpacity style={styles.container} onPress={this.props.onPress} activeOpacity={0.4}>
                 <Image source={{uri:imgUrl}} style={styles.icon}/>
